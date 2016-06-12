@@ -1,0 +1,5 @@
+package com.manriqueweb.raspberry.javacmd.helper;
+
+public interface HTTPClientHelper {
+	public abstract int sendPush(String idgcm, String idcard, String gasstation, String geolatlng);
+}

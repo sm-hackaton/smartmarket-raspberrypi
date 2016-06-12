@@ -1,0 +1,71 @@
+package mobile.smartmarket.smartmarket.javacmd.main;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import mobile.smartmarket.smartmarket.javacmd.helper.HTTPClientHelperImp;
+
+public class Main {
+	private static final Logger logger = LogManager.getLogger(Main.class.getName());
+
+	public static void main(String[] args) {
+		if(logger.isDebugEnabled())
+			logger.debug("ini: ");
+		
+		logger.info("Init");
+
+		try {
+			
+			if(argValidate(args)){
+				if(logger.isDebugEnabled()){
+					logger.debug("args: OK");
+					logger.debug(args[0]);
+					logger.debug(args[1]);
+					logger.debug(args[2]);
+					logger.debug(args[3]);
+				}
+
+				HTTPClientHelperImp.getInstance().sendPush(args[0], args[1], args[2], Double.valueOf(args[3]));
+				System.exit(0);
+				if(logger.isDebugEnabled()){
+					logger.debug("end: OK");
+				}
+			}else{
+				if(logger.isDebugEnabled()){
+					logger.debug("args: KO");
+				}
+				System.exit(1);
+			}
+
+		} catch (Exception e) {
+			stackTraceToString(e);
+		}
+	}
+	
+	private static boolean argValidate(String[] args){
+		if(args==null)
+			return false;
+		
+		if(args.length!=4)
+			return false;
+		
+		try {
+			Double monto = Double.valueOf(args[3]);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	private static void stackTraceToString(Throwable e) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(e.getMessage());
+        sb.append(" \n ");
+        for (StackTraceElement element : e.getStackTrace()) {
+            sb.append(element.toString());
+            sb.append(" \n ");
+        }
+		logger.error("error: \n ".concat(sb.toString()));
+    }
+}

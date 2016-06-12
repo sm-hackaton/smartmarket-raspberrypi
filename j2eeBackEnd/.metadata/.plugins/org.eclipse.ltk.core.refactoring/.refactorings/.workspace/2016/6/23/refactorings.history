@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;HackOpenBankJava&apos; to &apos;SmartMarketJava&apos;" description="Rename resource &apos;HackOpenBankJava&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/HackOpenBankJava" name="SmartMarketJava" stamp="1465690961748" updateReferences="true"/>
+</session>
